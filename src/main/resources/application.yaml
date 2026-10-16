@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: estoque
+  datasource:
+    url: jdbc:mysql://localhost:3306/estoque
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:mysql@140206}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
