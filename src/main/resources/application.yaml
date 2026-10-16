@@ -3,8 +3,8 @@ spring:
     name: estoque
   datasource:
     url: jdbc:mysql://localhost:3306/estoque
-    username: ${DB_USER:root}
-    password: ${DB_PASSWORD:mysql@140206}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
