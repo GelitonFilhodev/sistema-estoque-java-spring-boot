@@ -19,7 +19,7 @@ public class ProdutoController {
         return service.listar();
     }
 
-    @GetMapping(value = {"/id"},
+    @GetMapping(value = "/{id}",
         produces = MediaType.APPLICATION_JSON_VALUE
     )
     public Produto buscarId(@PathVariable("id") Long id){
@@ -42,7 +42,7 @@ public class ProdutoController {
         return service.atualizar(produto.getId(), produto);
     }
 
-    @DeleteMapping(value = {"/id"})
+    @DeleteMapping(value = "/{id}")
     public void deleta(@PathVariable("id") Long id){
         service.deletar(id);
     }
