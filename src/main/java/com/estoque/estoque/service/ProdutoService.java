@@ -1,5 +1,6 @@
 package com.estoque.estoque.service;
 
+import com.estoque.estoque.exception.ProdutoNaoEncontradoException;
 import com.estoque.estoque.model.Produto;
 import com.estoque.estoque.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class ProdutoService {
 
     public Produto buscarId(Long id){
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Produto não Encontrado!!"));
+                .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto não Encontrado!!"));
     }
 
     public Produto salvar(Produto produto){
