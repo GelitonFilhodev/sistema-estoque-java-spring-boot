@@ -13,6 +13,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,5 +42,30 @@ public class ProdutoServiceTest {
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
         assertThrows(RuntimeException.class, () -> service.buscarId(99L));
+    }
+
+    @Test
+    public void deveAtualizarProduto(){
+        Produto existente = new Produto();
+        existente.setId(1L);
+        existente.setNome("Teclado");
+
+        Produto novo = new Produto();
+        novo.setNome("Teclado RGB");
+
+        when(repository.findById(1L)).thenReturn(Optional.of(existente));
+        when(repository.save(existente)).thenReturn((existente));
+
+        Produto resultado = service.atualizar(1L, novo);
+        assertEquals("Teclado RGB", resultado.getNome());
+    }
+
+    @Test
+    public void deveDeletarProduto(){
+        when(repository.findById(1L)).thenReturn(Optional.of(new Produto()));
+
+        service.deletar(1L);
+
+        verify(repository).deleteById(1L);
     }
 }
